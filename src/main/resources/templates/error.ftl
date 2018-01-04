@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <meta charset="utf-8"> 
 </head>
 <body>
 	<div class="container">

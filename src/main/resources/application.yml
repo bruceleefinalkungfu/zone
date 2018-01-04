@@ -1,8 +1,9 @@
-# On which url and port should your application be accessible
 ---
 server:
+# zinComment
+# On which url and port should your application be accessible
   port: 8080
-  contextPath: /Zone
+  contextPath: /zone
 ---
 spring:
   profiles: local,default
