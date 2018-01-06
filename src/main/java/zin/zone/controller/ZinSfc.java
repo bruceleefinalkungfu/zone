@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ZinSfc {
 
-	@RequestMapping("/")
+	@RequestMapping("/zin")
 	String home(ModelMap modal) {
 		modal.addAttribute("title","CRUD Example");
 		return "index";
 	}
 
-	@RequestMapping("/partials/{page}")
+	@RequestMapping("/zin/partials/{page}")
 	String partialHandler(@PathVariable("page") final String page) {
 		return page;
 	}
