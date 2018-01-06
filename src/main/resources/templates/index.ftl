@@ -13,6 +13,7 @@
     <body>
     	<div id='zin-screen' style="border: thin solid blue;">
     		<input id='zin-start-button' type="button"></input>
+    		<input id='zin-start-button2' type="button"></input>
     	</div>
     	
         <script src="js/lib/angular.min.js" ></script>

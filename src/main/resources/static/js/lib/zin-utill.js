@@ -1,5 +1,15 @@
-'use strict';
-var app_name = "crudApp";
+/**
+ * Done
+ * Tasks
+ * 		-browser resize, all windows resize, relocate
+ * 		-Windows to have innerhtml from server
+ *		-keep track of id and z-index and change z-index on click on a zin-window
+ *		-add title bar and their functionalities
+ *		-add vertical, horizontal scroll bars
+ * 		-Task bar
+ * 			- to keep track of all the zin-windows and start button
+ * 		
+ */
 var zin_css = {
 	title_bar_height : '20',
 	title_bar_opacity : 0.4,
@@ -11,6 +21,22 @@ var zin_css = {
 	zin_window_background_color : 'white',
 }
 var top_z_index = -1;
+var zin_window_map = new Object();
+
+function add_to_zin_window_map(id, z_index) {
+	zin_window_map[id+''] = z_index;
+	//zin_window_arr[zin_window_arr.length] = {id : id, z_index : z_index };
+}
+function remove_from_zin_window_map(id) {
+	var id_z_index = zin_window_map.id;
+	delete zin_window_map[id];
+	$('#'+id).remove();
+	top_z_index--;
+	Object.keys(zin_window_map).forEach(function (key) {
+		if(zin_window_map.key > id_z_index)
+			$('#'+key).attr('z-index', --zin_window_map.key);
+	});
+}
 
 function create_zin_window(is_just_opened){
 	var size = get_browser_resolution();
@@ -21,11 +47,11 @@ function create_zin_window(is_just_opened){
 		background-color:#0992e8; opacity: '+zin_css.title_bar_opacity+';\
 		border-radius:'+zin_css.zin_window_boarder_radius+' '+zin_css.zin_window_boarder_radius+' 0px 0px; " ></div>';
 	}
-	
-	var prefix =  '<div class="zin-window" id='+get_random_alphanumeric(10)+' style="'+zin_css.border+'\
+	var id = get_random_alphanumeric(10);
+	var prefix =  '<div class="zin-window" id='+id+' style="'+zin_css.border+'\
 	width:'+width+'px; height:'+height+'px; border-radius: '+zin_css.zin_window_boarder_radius+';\
 	'+zin_css.position_absolute+' z-index: '+(++top_z_index)+'; background-color:'+zin_css.zin_window_background_color+';"';
-	var suffix = '>'+get_title_bar(width)+'<div>Made by a directive!</div></div>';
+	var suffix = '>'+get_title_bar(width)+'<div>Made by a directive!<h1>line 2</h1></div></div>';
 	var index = 0;
 	var arr=[];
 	if(is_just_opened)
@@ -34,6 +60,7 @@ function create_zin_window(is_just_opened){
 	for(var i=0 ; i<index ; i++)
 		zin_window_div += arr[i];
 	zin_window_div += suffix;
+	add_to_zin_window_map(id, top_z_index);
 	return zin_window_div;
 }
 
@@ -75,6 +102,11 @@ $('#zin-start-button').click(function(){
 	$('#zin-screen').append(create_zin_window(true));
 	// After appending it to html, bind the listener
 	set_resizable_draggable();
+});
+$('#zin-start-button2').click(function(){
+	//var new_zin_window = document.createElement('zin-window');
+	a='';
+	remove_from_zin_window_map(a);
 });
 
 // Set an event for on resizing the browser
