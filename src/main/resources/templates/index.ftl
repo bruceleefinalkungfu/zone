@@ -11,7 +11,7 @@
         
     </head>
     <body>
-    	<div id='zin-screen' style="border: thin solid blue;">
+    	<div id='zin-screen'>
     		<input id='zin-start-button' type="button"></input>
     		<input id='zin-start-button2' type="button"></input>
     	</div>
@@ -27,6 +27,6 @@
         <script src="js/app/app.js"></script>
         <script src="js/app/UserService.js"></script>
         <script src="js/app/UserController.js"></script>
-        <script src="js/lib/zin-utill.js"></script>
+        <script src="js/lib/zin-utill.js?version=2"></script>
     </body>
 </html>

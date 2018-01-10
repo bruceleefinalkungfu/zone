@@ -53,6 +53,8 @@ var zin_var = {
 		zin_window_minimum_width : (zin_css.title_bar_height * 8),
 		
 		space_between_zin_screen_and_zin_window_top : 1,
+		
+		subtracted_from_browser_resolution : 5,
 }
 var top_z_index = -1;
 var zin_window_map = new Object();
@@ -122,17 +124,19 @@ function get_random_alphanumeric(size) {
 	return text;
 }
 
+// returns without px suffix
 function get_zin_screen_resolution() {
 	var elem = $('#zin-screen');
 	return { width : parseInt(elem.css('width')) , height : parseInt(elem.css('height'))};
 }
 
+// returns without px suffix
 function get_browser_resolution() {
 	/*-- java script
 	var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
 	var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
 	//*/
-	return { width : $(window).width()-5, height : $(window).height()-5};
+	return { width : $(window).width()-zin_var.subtracted_from_browser_resolution, height : $(window).height()-zin_var.subtracted_from_browser_resolution};
 }
 
 function change_zin_window_size(id, width, height, is_maximize) {
@@ -223,7 +227,7 @@ function on_window_resize() {
 		$(elem).css('top', current_top).css('left', current_left)
 		.css('width', current_width).css('height', current_height);
 	});
-	$("#zin-screen").width(size.width).height(size.height);
+	$("#zin-screen").width(size.width+'px').height(size.height+'px');
 }
 
 $(document).ready(function() {
