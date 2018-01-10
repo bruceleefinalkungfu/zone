@@ -155,8 +155,8 @@ function unbind_events_on_window(id) {
 
 function bind_events_on_window(id) {
 	var elem = $("#"+id).draggable({ handle: ".zin-title-bar", containment: "#zin-screen", scroll: false })
-	.resizable({ containment: "#zin-screen", minHeight: zin_var.zin_window_minimum_height,
-		minWidth: zin_var.zin_window_minimum_width})
+	.resizable({ containment: "#zin-screen", handles: 'n, e, s, w, se, ne, sw, nw',
+		minHeight: zin_var.zin_window_minimum_height, minWidth: zin_var.zin_window_minimum_width})
 	.mousedown(function(){ on_zin_window_click(this); })
 	var title_bar = elem.children('.zin-title-bar');
 	title_bar.children('.zin-close-button').click(function(){
@@ -177,7 +177,7 @@ function maximize_zin_window(id) {
 	size.height = size.height - 2*zin_var.space_between_zin_screen_and_zin_window_top;
 	var changed_width = size.width;
 	var changed_height = size.height;
-	if( parseInt(elem.css('width')) == size.width && parseInt(elem.css('height')) == size.height ){
+	if( parseInt(elem.css('width')) >= size.width && parseInt(elem.css('height')) >= size.height ){
 		changed_height = size.height/2;
 		changed_width = size.width/2;
 	}
